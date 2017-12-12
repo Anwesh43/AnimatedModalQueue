@@ -26,6 +26,11 @@ class Modal {
     setY(y) {
         this.div.style.top = y
     }
+    removeFromParent() {
+        this.animator.startAnimation(()=>{
+            document.body.removeChild(this.div)
+        })
+    }
 }
 class ModalAnimator {
     constructor(modal) {
@@ -36,7 +41,7 @@ class ModalAnimator {
         this.destY = modal.maxY
         this.modal = modal
     }
-    startAnimation() {
+    startAnimation(cb) {
         if(!this.animated) {
             this.animated = true
             this.state.startUpdating()
@@ -48,6 +53,9 @@ class ModalAnimator {
                 if(this.state.stopped()) {
                     clearInterval(interval)
                     this.animated = false
+                    if(cb) {
+                        cb()
+                    }
                 }
             },50)
         }
