@@ -3,6 +3,7 @@ class Modal {
     constructor(text) {
         this.text = text
         this.maxY = h/2-h/6
+        this.animator = new ModalAnimator(this)
     }
     createDom() {
         this.div = document.createElement('div')
@@ -17,6 +18,7 @@ class Modal {
     }
     addToParent() {
         document.body.appendChild(this.div)
+        this.animator.startAnimation()
     }
 }
 class ModalAnimator {
