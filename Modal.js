@@ -19,3 +19,20 @@ class Modal {
         document.body.appendChild(this.div)
     }
 }
+class ModalAnimator {
+    constructor(modal) {
+        this.animated = false
+        this.y = parseInt(modal.div.style.top)
+        this.oy = this.y
+        this.destY = modal.maxY
+    }
+    startAnimation() {
+        if(!this.animated) {
+            this.animated = true
+            const interval = setInterval(()=>{
+                t
+            },50)
+        }
+    }
+
+}
