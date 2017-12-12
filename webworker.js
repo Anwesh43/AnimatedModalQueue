@@ -10,6 +10,7 @@ class Timer {
         this.execute()
     }
     execute() {
+      console.log(this.queue)
       if(this.queue.length > 0) {
           const obj = this.queue[0]
           this.sleep(obj.time,obj.tag)
@@ -18,9 +19,11 @@ class Timer {
     sleep(time,tag) {
         if(!this.waiting) {
             this.waiting = true
+            console.log(this.waiting)
             setTimeout(()=>{
-                postMessage("")
+                postMessage(tag)
                 this.queue.splice(0,1)
+                this.waiting = false
                 this.execute()
             },time)
         }
@@ -28,5 +31,6 @@ class Timer {
 }
 const timer = new Timer()
 self.onmessage = (timerObj)=>{
-    timer.add(timerObj)
+    console.log(timerObj.data)
+    timer.add(timerObj.data)
 }

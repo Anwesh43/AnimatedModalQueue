@@ -2,16 +2,16 @@ const w = window.innerWidth,h = window.innerHeight
 class Modal {
     constructor(text,color) {
         this.text = text
-        this.maxY = h/2-h/6
+        this.maxY = h/2-h/4
         this.color = color
     }
     createDom() {
         this.div = document.createElement('div')
         this.div.style.width = w/3
-        this.div.style.height = h/3
+        this.div.style.height = h/2
         this.div.style.position = 'absolute'
         this.div.style.left = w/2 - w/6
-        this.div.style.top = h+ h/3
+        this.div.style.top = h+ h/2
         this.div.style.background = this.color || '#EEEEEE'
         this.div.style.borderRadius = `${Math.min(w,h)/25}px`
         this.div.style.fontSize = Math.min(w,h)/16
@@ -70,7 +70,6 @@ class ModalState {
     }
     update(cb) {
         this.scale += this.dir*0.1
-        console.log(this.scale)
         cb(this.scale)
         if(Math.abs(this.prevScale-this.scale)>1) {
             this.scale = this.prevScale + this.dir
