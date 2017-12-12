@@ -21,6 +21,7 @@ class Modal {
 }
 class ModalAnimator {
     constructor(modal) {
+        this.state = new ModalState()
         this.animated = false
         this.y = parseInt(modal.div.style.top)
         this.oy = this.y
@@ -29,8 +30,11 @@ class ModalAnimator {
     startAnimation() {
         if(!this.animated) {
             this.animated = true
+            this.state.startUpdating()
             const interval = setInterval(()=>{
-                this.y = this.oy + (this.destY-this.y)
+                this.state.update(()=>{
+                    this.y = this.oy + (this.destY-this.y)*scale
+                })
             },50)
         }
     }
