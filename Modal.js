@@ -26,9 +26,10 @@ class Modal {
     setY(y) {
         this.div.style.top = y
     }
-    removeFromParent() {
+    removeFromParent(cb) {
         this.animator.startAnimation(()=>{
             document.body.removeChild(this.div)
+            cb()
         })
     }
 }
