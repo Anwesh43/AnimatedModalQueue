@@ -30,9 +30,22 @@ class ModalAnimator {
         if(!this.animated) {
             this.animated = true
             const interval = setInterval(()=>{
-                t
+                this.y = this.oy + (this.destY-this.y)
             },50)
         }
+    }
+}
+class ModalState {
+    constructor() {
+        this.scale = 0
+        this.dir = 0
+    }
+    update(cb) {
+        this.scale += this.dir*0.1
+        cb(this.scale)
+    }
+    startUpdating() {
+        this.dir = 1-2*this.scale
     }
 
 }
